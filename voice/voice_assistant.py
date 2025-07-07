@@ -14,18 +14,15 @@ class VoiceAssistant:
         self.engine.setProperty('volume', volume)   
         self.recognizer = sr.Recognizer()
 
-   
     def listen(self):
         with sr.Microphone() as source:
             try:
-                print("Listening...")
-                audio = self.recognizer.listen(source, timeout=10)
+                print("Listening...")                
+                audio = self.recognizer.listen(source, timeout=30)
                 return self.recognizer.recognize_google(audio, language="en-GB")
             except:
                 return "I'm sorry, I couldn't understand what you said."
     
-
-
     def speak(self, text):
         try:
             # Crear una nueva instancia del motor cada vez
