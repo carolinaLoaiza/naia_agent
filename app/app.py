@@ -9,35 +9,45 @@ from assistant.groq_chat import GroqChat
 from history.ChatHistoryManager import ChatHistoryManager
 import streamlit as st
 
-st.title("<NAME>")
+st.title("NAIA")
 st.subheader("Your post-surgery assistant")
 
 chat = GroqChat()
 voice = VoiceAssistant()
 chatHistoryManager = ChatHistoryManager()
 
-modo = st.radio("How would you like to talk to your recovery assistant?", ["Text", "Voice"])
+#modo = st.radio("How would you like to talk to your recovery assistant?", ["Text", "Voice"])
 
 
 if "messages" not in st.session_state:
     st.session_state.messages = chatHistoryManager.load()
 
-#if "messages" not in st.session_state:
- #   st.session_state.messages = chat.get_initial_messages()
 
 for msg in st.session_state.messages:
     role = "user" if msg.type == "human" else "assistant"
     with st.chat_message(role):
         st.markdown(msg.content)
 
-if modo == "Text":
+# Mostrar input de texto y botón de micrófono al mismo tiempo
+col1, col2 = st.columns([4, 1])
+with col1:
     user_input = st.chat_input("Write your message:")
-else:
-    if st.button("Start Speaking"):
-        user_input = voice.listen()
-        st.write(f"You said: {user_input}")
-    else:
-        user_input = None
+with col2:
+    mic_clicked = st.button("🎤", help="Click to speak")
+
+# Si se hizo clic en el botón de micrófono
+if mic_clicked:
+    user_input = voice.listen()
+    st.write(f"You said: {user_input}")
+
+#if modo == "Text":
+#    user_input = st.chat_input("Write your message:")
+#else:
+#    if st.button("Start Speaking"):
+#        user_input = voice.listen()
+#        st.write(f"You said: {user_input}")
+#    else:
+#        user_input = None
 
 if user_input:
     st.session_state.messages.append(chat.human_message(user_input))
@@ -53,7 +63,8 @@ if user_input:
     with st.chat_message("assistant"):
         st.markdown(response)
 
-    if modo == "Voice":
+    #if modo == "Voice":
+    if mic_clicked:
         voice.speak(response) 
  
     

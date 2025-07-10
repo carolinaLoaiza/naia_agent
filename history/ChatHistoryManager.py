@@ -3,11 +3,10 @@ import os
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
 
 class ChatHistoryManager:
-    def __init__(self, filepath="history/chat_history.json"):
+    def __init__(self, filepath="data/chat_history.json"):
         self.filepath = filepath
 
     def load(self):
-        """Carga historial desde archivo (si existe), si no crea el primer mensaje del sistema."""
         if os.path.exists(self.filepath):
             with open(self.filepath, "r", encoding="utf-8") as f:
                 raw = json.load(f)
@@ -21,7 +20,6 @@ class ChatHistoryManager:
             return [SystemMessage(content="You are a helpful assistant for post-surgery recovery.")]
 
     def save(self, messages):
-        """Guarda la lista de mensajes en el archivo como JSON serializable."""
         serializable = []
         for m in messages:
             role = (
