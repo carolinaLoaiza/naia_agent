@@ -8,26 +8,6 @@ from voice.voice_assistant import VoiceAssistant
 from assistant.groq_chat import GroqChat
 from history.ChatHistoryManager import ChatHistoryManager
 import streamlit as st
-from streamlit.components.v1 import html
-
-
-def speak_text(text):
-    # Escapa comillas y caracteres especiales para insertar en JS
-        escaped_text = text.replace('"', '\\"').replace('\n', ' ')
-        js_code = f"""
-        <script>
-        const voices = window.speechSynthesis.getVoices();
-        const voice = voices.find(v => v.lang === 'en-GB' && v.name.toLowerCase().includes('female')) || voices.find(v => v.lang === 'en-GB') || voices[2];
-        var msg = new SpeechSynthesisUtterance("{escaped_text}");
-         if (voice) {{
-            msg.voice = voice;
-        }}
-        msg.lang = "en-GB";
-        window.speechSynthesis.speak(msg);
-        </script>
-        """
-        html(js_code)
-
 
 st.title("NAIA")
 st.subheader("Your post-surgery assistant")
@@ -79,13 +59,11 @@ if user_input:
     st.session_state.messages.append(chat.ai_message(response))
 
     chatHistoryManager.save(st.session_state.messages) 
-    
+
     with st.chat_message("assistant"):
         st.markdown(response)
 
     #if modo == "Voice":
     if mic_clicked:
-        #voice.speak(response) 
-        speak_text(response)
-        
-    
+        voice.speak(response) 
+
