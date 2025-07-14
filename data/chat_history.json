@@ -26,5 +26,29 @@
   {
     "role": "assistant",
     "content": "Your name is Carolina."
+  },
+  {
+    "role": "user",
+    "content": "hello"
+  },
+  {
+    "role": "assistant",
+    "content": "Hello Carolina. How are you feeling today after your surgery?"
+  },
+  {
+    "role": "user",
+    "content": "I'm filling good "
+  },
+  {
+    "role": "assistant",
+    "content": "That's great to hear, Carolina. It's normal to feel a bit anxious or sore after surgery, but it sounds like you're doing well. Are you following the instructions and advice given to you by your healthcare team?"
+  },
+  {
+    "role": "user",
+    "content": "hello hello"
+  },
+  {
+    "role": "assistant",
+    "content": "Hello Carolina. Is there anything I can help you with or any questions you have about your recovery?"
   }
 ]
