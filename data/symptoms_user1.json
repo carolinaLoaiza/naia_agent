@@ -1,0 +1,28 @@
+[
+  {
+    "detected_symptoms": [
+      "fever",
+      "arm pain"
+    ],
+    "severity": null,
+    "duration": null,
+    "requires_attention": false,
+    "location": null,
+    "mensaje_original": "I have fever and arm pain ",
+    "timestamp": "2025-07-15T11:59:10.275560",
+    "user_id": "user1"
+  },
+  {
+    "detected_symptoms": [
+      "chest pain",
+      "left arm numbness or pain"
+    ],
+    "severity": "moderate",
+    "duration": "unknown",
+    "requires_attention": true,
+    "location": "chest, left arm",
+    "mensaje_original": "then I have chest pain and my left arm is feeling weird ",
+    "timestamp": "2025-07-15T12:00:03.012556",
+    "user_id": "user1"
+  }
+]
