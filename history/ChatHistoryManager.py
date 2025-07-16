@@ -3,8 +3,8 @@ import os
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
 
 class ChatHistoryManager:
-    def __init__(self, filepath="data/chat_history.json"):
-        self.filepath = filepath
+    def __init__(self, user_id, base_path="data/"):
+        self.filepath = os.path.join(base_path, f"chat_history_{user_id}.json")
 
     def load(self):
         if os.path.exists(self.filepath):
