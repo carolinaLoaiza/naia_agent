@@ -12,3 +12,4 @@ langgraph
 requests
 beautifulsoup4
 streamlit-aggrid
+streamlit_chat
